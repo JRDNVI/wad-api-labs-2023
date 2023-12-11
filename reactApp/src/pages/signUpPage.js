@@ -25,6 +25,7 @@ const SignUpPage = props => {
     return <Navigate to="/login" />;
   }
 
+  //
   return (
     <>
       <h2>SignUp page</h2>
