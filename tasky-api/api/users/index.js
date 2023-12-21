@@ -14,13 +14,13 @@ router.get('/', async (req, res) => {
 router.post('/', asyncHandler(async (req, res) => {
     const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
     if (req.query.action === 'register') {  //if action is 'register' then save to DB
-        await User(req.body).save();
         if(!regex.test(req.body.password)){
-            res.status(400).json({
+          return res.status(400).json({
                 code: 400,
                 msg: 'Invalid Password.',
             });
         }
+        await User(req.body).save();
         res.status(201).json({
             code: 201,
             msg: 'Successful created new user.',
